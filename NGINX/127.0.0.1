@@ -1,0 +1,41 @@
+################################
+#                              #
+# 127.0.0.1                    #
+# static storage for localhost #
+# html|css|js|svg|json|ttf|ico #
+#                              #
+################################
+
+server {
+        server_name 127.0.0.1;
+
+        root /mnt/c/Users/Азъ/wsl-localhost/127.0.0.1;
+
+        listen 80;
+        listen [::]:80;
+
+        access_log off;
+        error_log off;
+        log_not_found off;
+
+        server_tokens off;
+        server_name_in_redirect off;
+
+        sendfile on;
+        tcp_nopush on;
+        tcp_nodelay on;
+
+        gzip on;
+        gzip_proxied any;
+        gzip_comp_level 9;
+        gzip_types *;
+
+        location ~* \.(html|css|js|svg|json|ttf|ico)$ {
+                add_header 'Access-Control-Allow-Origin' 'http://localhost';
+                add_header Cache-Control "private";
+                expires 24h;
+                etag on;
+
+                try_files $uri =404;
+        }
+}
