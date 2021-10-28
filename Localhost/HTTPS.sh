@@ -44,3 +44,8 @@ sudo mv /mnt/c/Users/Азъ/127.0.0.1-privkey.pem /etc/letsencrypt/live/127.0.0.
 
 sudo mv /mnt/c/Users/Азъ/192.168.1.1-fullchain.pem /etc/letsencrypt/live/192.168.1.1/fullchain.pem
 sudo mv /mnt/c/Users/Азъ/192.168.1.1-privkey.pem /etc/letsencrypt/live/192.168.1.1/privkey.pem
+
+#перезапускаю NGINX
+
+sudo service nginx stop
+sudo service nginx start
