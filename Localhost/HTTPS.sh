@@ -18,7 +18,7 @@ mkcert -install
 
 mkcert -cert-file C:\Users\Азъ\localhost-fullchain.pem -key-file C:\Users\Азъ\localhost-privkey.pem localhost
 mkcert -cert-file C:\Users\Азъ\127.0.0.1-fullchain.pem -key-file C:\Users\Азъ\127.0.0.1-privkey.pem 127.0.0.1
-mkcert -cert-file C:\Users\Азъ\192.168.1.1-fullchain.pem -key-file C:\Users\Азъ\192.168.1.1-privkey.pem 192.168.1.1
+mkcert -cert-file C:\Users\Азъ\192.168.1.2-fullchain.pem -key-file C:\Users\Азъ\192.168.1.1-privkey.pem 192.168.1.2
 
 #######
 # WSL #
@@ -28,11 +28,11 @@ mkcert -cert-file C:\Users\Азъ\192.168.1.1-fullchain.pem -key-file C:\Users\�
 
 sudo mkdir -p /etc/letsencrypt/live/localhost/
 sudo mkdir -p /etc/letsencrypt/live/127.0.0.1/
-sudo mkdir -p /etc/letsencrypt/live/192.168.1.1/
+sudo mkdir -p /etc/letsencrypt/live/192.168.1.2/
 
 sudo chmod 777 /etc/letsencrypt/live/localhost/
 sudo chmod 777 /etc/letsencrypt/live/127.0.0.1/
-sudo chmod 777 /etc/letsencrypt/live/192.168.1.1/
+sudo chmod 777 /etc/letsencrypt/live/192.168.1.2/
 
 #переношу сертификаты
 
@@ -42,8 +42,8 @@ sudo mv /mnt/c/Users/Азъ/localhost-privkey.pem /etc/letsencrypt/live/localhos
 sudo mv /mnt/c/Users/Азъ/127.0.0.1-fullchain.pem /etc/letsencrypt/live/127.0.0.1/fullchain.pem
 sudo mv /mnt/c/Users/Азъ/127.0.0.1-privkey.pem /etc/letsencrypt/live/127.0.0.1/privkey.pem
 
-sudo mv /mnt/c/Users/Азъ/192.168.1.1-fullchain.pem /etc/letsencrypt/live/192.168.1.1/fullchain.pem
-sudo mv /mnt/c/Users/Азъ/192.168.1.1-privkey.pem /etc/letsencrypt/live/192.168.1.1/privkey.pem
+sudo mv /mnt/c/Users/Азъ/192.168.1.2-fullchain.pem /etc/letsencrypt/live/192.168.1.2/fullchain.pem
+sudo mv /mnt/c/Users/Азъ/192.168.1.2-privkey.pem /etc/letsencrypt/live/192.168.1.2/privkey.pem
 
 #перезапускаю NGINX
 
