@@ -4,6 +4,8 @@
 
 В файл c:\Windows\System32\Drivers\etc\hosts дописать строку для поддомена с WWW:
 127.0.0.1    www.localhost
+127.0.0.1    example.com
+127.0.0.1    www.example.com
 
 ###############
 # Power Shell #
