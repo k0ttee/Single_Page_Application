@@ -1,26 +1,8 @@
-###############
-# localhost   #
-# Development #
-###############
-
-server {
-        listen 80;
-        listen [::]:80;
-        server_name localhost;
-
-        root /mnt/c/Users/Азъ/wsl-localhost/localhost;
-        index index.php;
-
-        location / {
-                include snippets/fastcgi-php.conf;
-                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
-        }
-}
-
-##############
-# localhost  #
-# Production #
-##############
+####################
+# Localhost        #
+# Website Server   #
+# The Main Backend #
+####################
 
 #HTTP & HTTP_WWW → HTTPS
 server{
@@ -40,12 +22,12 @@ server {
 
 #HTTPS
 server {
-        listen 443 ssl http2;
-        listen [::]:443 ssl http2 ipv6only=on;
-
         server_name localhost;
-
         root /mnt/c/Users/Азъ/wsl-localhost/localhost;
+
+        listen 443 ssl http2;
+        #listen [::]:443 ssl http2 ipv6only=on;
+
         index index.php;
 
         add_header Cache-Control "private";
@@ -53,11 +35,13 @@ server {
         etag off;
 
         location / {
+                add_header Cache-Control "private";
+                expires 0;
+                etag off;
                 include snippets/fastcgi-php.conf;
                 fastcgi_pass unix:/run/php/php7.4-fpm.sock;
         }
 
-        ssl on;
         ssl_certificate     /etc/letsencrypt/live/localhost/fullchain.pem;
         ssl_certificate_key /etc/letsencrypt/live/localhost/privkey.pem;
 
