@@ -1,63 +1,26 @@
-##################
-# 192.168.1.2    #
-# Finance server #
-# Development    #
-##################
+#######################
+# 192.168.1.2         #
+# Finance server      #
+# Provide Finance API #
+#######################
 
 server {
-        listen 80;
-        listen [::]:80;
-
         server_name 192.168.1.2;
-        add_header 'Access-Control-Allow-Origin' 'http://localhost';
-
         root /mnt/c/Users/Азъ/wsl-localhost/192.168.1.2;
+
+        listen 443 ssl http2;
+        #listen [::]:443 ssl http2 ipv6only=on;
+
         index index.php;
 
         location / {
+                add_header 'Access-Control-Allow-Origin' 'http://localhost';
+                expires 0;
+                etag off;
                 include snippets/fastcgi-php.conf;
                 fastcgi_pass unix:/run/php/php7.4-fpm.sock;
         }
+
+        ssl_certificate     /etc/letsencrypt/live/192.168.1.2/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/192.168.1.2/privkey.pem;
 }
-
-##################
-# 192.168.1.2    #
-# Finance server #
-# Production     #
-##################
-
-#HTTPS
-#server {
-#        listen 443 ssl http2;
-#        listen [::]:443 ssl http2 ipv6only=on;
-
-#        server_name 192.168.1.2;
-#        add_header 'Access-Control-Allow-Origin' 'http://localhost';
-
-#        root /mnt/c/Users/Азъ/wsl-localhost/192.168.1.2;
-#        index index.php;
-
-#        add_header Cache-Control "private";
-#        expires 0;
-#        etag off;
-
-#        location / {
-#                include snippets/fastcgi-php.conf;
-#                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
-#        }
-
-#        ssl on;
-#        ssl_certificate     /etc/letsencrypt/live/192.168.1.2/fullchain.pem;
-#        ssl_certificate_key /etc/letsencrypt/live/192.168.1.2/privkey.pem;
-
-#        add_header Strict-Transport-Security "max-age=1; includeSubDomains; preload";
-
-#        ssl_session_cache shared:SSLCACHE:64m;
-#        ssl_session_timeout 24h;
-#        keepalive_timeout 120 120;
-#        keepalive_requests 128;
-
-#        ssl_prefer_server_ciphers on;
-#        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-#        ssl_ciphers ALL:!aNULL:!ADH:!eNULL:!LOW:!EXP:RC4+RSA:+HIGH:+MEDIUM;
-#}
