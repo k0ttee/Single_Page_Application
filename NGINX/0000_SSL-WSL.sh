@@ -62,3 +62,15 @@ sudo mv /mnt/c/Users/Азъ/127.0.0.1-privkey.pem /etc/letsencrypt/live/127.0.0.
 
 sudo service nginx stop
 sudo service nginx start
+
+######################################
+# для создания сертификатов на проде #
+######################################
+
+server {
+        listen 80;
+        listen [::]:80;
+        server_name _;
+        root /var/www/web;
+        index index.html;
+}
