@@ -18,7 +18,7 @@ mkcert -install
 
 mkcert -cert-file C:\Users\Азъ\localhost-fullchain.pem -key-file C:\Users\Азъ\localhost-privkey.pem localhost
 mkcert -cert-file C:\Users\Азъ\127.0.0.1-fullchain.pem -key-file C:\Users\Азъ\127.0.0.1-privkey.pem 127.0.0.1
-mkcert -cert-file C:\Users\Азъ\192.168.1.2-fullchain.pem -key-file C:\Users\Азъ\192.168.1.1-privkey.pem 192.168.1.2
+mkcert -cert-file C:\Users\Азъ\192.168.1.2-fullchain.pem -key-file C:\Users\Азъ\192.168.1.2-privkey.pem 192.168.1.2
 
 #######
 # WSL #
