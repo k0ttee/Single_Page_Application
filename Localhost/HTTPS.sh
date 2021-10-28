@@ -1,3 +1,10 @@
+###########
+# Windows #
+###########
+
+В файл c:\Windows\System32\Drivers\etc\hosts дописать строку для поддомена с WWW:
+127.0.0.1    www.localhost
+
 ###############
 # Power Shell #
 ###############
