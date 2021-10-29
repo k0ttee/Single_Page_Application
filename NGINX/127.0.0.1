@@ -17,7 +17,7 @@ server {
         gzip_types *;
 
         location ~* \.(html|css|js|svg|json|ttf|ico)$ {
-                add_header 'Access-Control-Allow-Origin' 'http://example.test';
+                add_header 'Access-Control-Allow-Origin' 'https://example.test';
                 expires 24h;
                 etag on;
                 try_files $uri =404;
