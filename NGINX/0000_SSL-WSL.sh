@@ -2,7 +2,11 @@
 # Windows #
 ###########
 
-В файл c:\Windows\System32\Drivers\etc\hosts дописать строку для поддомена с WWW:
+В файл c:\Windows\System32\Drivers\etc\hosts дописать домены
+
+127.0.0.1    example.test
+127.0.0.1    www.example.test
+127.0.0.1    localhost
 127.0.0.1    www.localhost
 
 ###############
@@ -23,10 +27,11 @@ mkcert -install
 
 #генерирую сертификаты
 
+mkcert -cert-file C:\Users\Азъ\example.test-fullchain.pem -key-file C:\Users\Азъ\example.test-privkey.pem example.test
+mkcert -cert-file C:\Users\Азъ\www.example.test-fullchain.pem -key-file C:\Users\Азъ\www.example.test-privkey.pem www.example.test
 mkcert -cert-file C:\Users\Азъ\localhost-fullchain.pem -key-file C:\Users\Азъ\localhost-privkey.pem localhost
 mkcert -cert-file C:\Users\Азъ\www.localhost-fullchain.pem -key-file C:\Users\Азъ\www.localhost-privkey.pem www.localhost
 mkcert -cert-file C:\Users\Азъ\127.0.0.1-fullchain.pem -key-file C:\Users\Азъ\127.0.0.1-privkey.pem 127.0.0.1
-#mkcert -cert-file C:\Users\Азъ\192.168.1.2-fullchain.pem -key-file C:\Users\Азъ\192.168.1.2-privkey.pem 192.168.1.2
 
 #######
 # WSL #
@@ -34,17 +39,25 @@ mkcert -cert-file C:\Users\Азъ\127.0.0.1-fullchain.pem -key-file C:\Users\А�
 
 #готовлю директории (пути как в продакшене)
 
+sudo mkdir -p /etc/letsencrypt/live/example.test/
+sudo mkdir -p /etc/letsencrypt/live/www.example.test/
 sudo mkdir -p /etc/letsencrypt/live/localhost/
 sudo mkdir -p /etc/letsencrypt/live/www.localhost/
 sudo mkdir -p /etc/letsencrypt/live/127.0.0.1/
-#sudo mkdir -p /etc/letsencrypt/live/192.168.1.2/
 
+sudo chmod 777 /etc/letsencrypt/live/example.test/
+sudo chmod 777 /etc/letsencrypt/live/www.example.test/
 sudo chmod 777 /etc/letsencrypt/live/localhost/
 sudo chmod 777 /etc/letsencrypt/live/www.localhost/
 sudo chmod 777 /etc/letsencrypt/live/127.0.0.1/
-#sudo chmod 777 /etc/letsencrypt/live/192.168.1.2/
 
 #переношу сертификаты
+
+sudo mv /mnt/c/Users/Азъ/example.test-fullchain.pem /etc/letsencrypt/live/example.test/fullchain.pem
+sudo mv /mnt/c/Users/Азъ/example.test-privkey.pem /etc/letsencrypt/live/example.test/privkey.pem
+
+sudo mv /mnt/c/Users/Азъ/www.example.test-fullchain.pem /etc/letsencrypt/live/www.example.test/fullchain.pem
+sudo mv /mnt/c/Users/Азъ/www.example.test-privkey.pem /etc/letsencrypt/live/www.example.test/privkey.pem
 
 sudo mv /mnt/c/Users/Азъ/localhost-fullchain.pem /etc/letsencrypt/live/localhost/fullchain.pem
 sudo mv /mnt/c/Users/Азъ/localhost-privkey.pem /etc/letsencrypt/live/localhost/privkey.pem
@@ -54,9 +67,6 @@ sudo mv /mnt/c/Users/Азъ/www.localhost-privkey.pem /etc/letsencrypt/live/www.
 
 sudo mv /mnt/c/Users/Азъ/127.0.0.1-fullchain.pem /etc/letsencrypt/live/127.0.0.1/fullchain.pem
 sudo mv /mnt/c/Users/Азъ/127.0.0.1-privkey.pem /etc/letsencrypt/live/127.0.0.1/privkey.pem
-
-#sudo mv /mnt/c/Users/Азъ/192.168.1.2-fullchain.pem /etc/letsencrypt/live/192.168.1.2/fullchain.pem
-#sudo mv /mnt/c/Users/Азъ/192.168.1.2-privkey.pem /etc/letsencrypt/live/192.168.1.2/privkey.pem
 
 #перезапускаю NGINX
 
