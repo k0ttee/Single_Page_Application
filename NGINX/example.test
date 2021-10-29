@@ -1,0 +1,43 @@
+####################
+# example.test     #
+# Website Server   #
+# The Main Backend #
+####################
+
+#HTTP & HTTP_WWW → HTTPS
+server{
+        listen 80;
+        server_name example.test www.example.test;
+        return 301 https://example.test$request_uri;
+}
+
+#HTTPS_WWW → HTTPS
+server {
+        listen 443 ssl http2;
+        server_name www.example.test;
+        ssl_certificate     /etc/letsencrypt/live/www.example.test/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/www.example.test/privkey.pem;
+        return 301 https://example.test$request_uri;
+}
+
+#HTTPS
+server {
+        server_name example.test;
+        root /mnt/c/Users/Азъ/wsl-localhost/example.test;
+
+        listen 443 ssl http2;
+        #listen [::]:443 ssl http2 ipv6only=on;
+
+        index index.php;
+
+        expires 0;
+        etag off;
+
+        location / {
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+        }
+
+        ssl_certificate     /etc/letsencrypt/live/example.test/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/example.test/privkey.pem;
+}
