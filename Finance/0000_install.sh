@@ -36,6 +36,7 @@ rm -rf bitcoin
 #############################################
 # запуск демона                             #
 # важна длина обрезки цепи (551 или больше) #
+# важен абсолютный путь до DataDir          #
 #############################################
 
-bitcoind -daemon -prune=551 -datadir=~/bitcoin-prune-551
+bitcoind -daemon -prune=551 -datadir=/home/ku/bitcoin-prune-551/
