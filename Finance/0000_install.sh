@@ -41,8 +41,26 @@ rm -rf bitcoin
 
 nano ~/bitcoin-prune-551/bitcoin.conf
 
+#секция тестовой сети
+[test]
+par         = 1
+datadir     = /Volumes/Bitcoin/Core-Testnet
+addresstype = p2sh-segwit
+chain       = test
+rpcuser     = user
+rpcpassword = password
+rpcport     = 8332
+rpcallowip  = 127.0.0.1
+rpcbind     = 127.0.0.1:8332
+
 #################
 # запуск демона #
 #################
 
-bitcoind -daemon -prune=551 -datadir=/home/ku/bitcoin-prune-551/
+bitcoind -daemon -chain=test -prune=551 -datadir=/home/ku/bitcoin-prune-551/
+
+####################
+# остановка демона #
+####################
+
+bitcoin-cli -rpcuser=user -rpcpassword=password stop
