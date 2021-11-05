@@ -34,16 +34,31 @@ rm -rf bitcoin
 
 
 #############################################
-# настройка демона                          #
+# настройка демона (test & main)            #
 # важна длина обрезки цепи (551 или больше) #
 # важен абсолютный путь до DataDir          #
 #############################################
 
+mkdir ~/bitcoin-prune-test
 nano ~/bitcoin-prune-551/bitcoin.conf
 
-#секция тестовой сети
 [test]
+
 par         = 1
+prune       = 551
+datadir     = /home/ku/bitcoin-prune-test/
+addresstype = p2sh-segwit
+chain       = test
+rpcuser     = user
+rpcpassword = password
+rpcport     = 8332
+rpcallowip  = 127.0.0.1
+rpcbind     = 127.0.0.1:8332
+
+[main]
+
+par         = 1
+prune       = 551
 datadir     = /home/ku/bitcoin-prune-551/
 addresstype = p2sh-segwit
 chain       = test
