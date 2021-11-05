@@ -39,14 +39,13 @@ rm -rf bitcoin
 # важен абсолютный путь до DataDir          #
 #############################################
 
-mkdir ~/bitcoin-prune-test
 nano ~/bitcoin-prune-551/bitcoin.conf
 
 [test]
 
 par         = 1
 prune       = 551
-datadir     = /home/ku/bitcoin-prune-test/
+datadir     = /home/ku/bitcoin-prune-551/
 addresstype = p2sh-segwit
 chain       = test
 rpcuser     = user
@@ -61,7 +60,7 @@ par         = 1
 prune       = 551
 datadir     = /home/ku/bitcoin-prune-551/
 addresstype = p2sh-segwit
-chain       = test
+chain       = main
 rpcuser     = user
 rpcpassword = password
 rpcport     = 8332
@@ -73,7 +72,7 @@ rpcbind     = 127.0.0.1:8332
 # важен абсолютный путь до DataDir #
 ####################################
 
-bitcoind -daemon -chain=test -prune=551 -datadir=/home/ku/bitcoin-prune-test
+bitcoind -daemon -chain=test -prune=551 -datadir=/home/ku/bitcoin-prune-551
 bitcoind -daemon -chain=main -prune=551 -datadir=/home/ku/bitcoin-prune-551
 
 ###############
