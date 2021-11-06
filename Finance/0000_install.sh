@@ -58,7 +58,7 @@ nano ~/bitcoin-prune-551/bitcoin.conf
 par         = 1
 prune       = 551
 datadir     = /home/ku/bitcoin-prune-551/
-wallet      = /home/ku/bitcoin-prune-551/testnet3/wallets/wallet-test/
+#wallet      = /home/ku/bitcoin-prune-551/testnet3/wallets/wallet-test/
 addresstype = p2sh-segwit
 chain       = test
 rpcuser     = user
@@ -72,7 +72,7 @@ rpcbind     = 127.0.0.1:8332
 par         = 1
 prune       = 551
 datadir     = /home/ku/bitcoin-prune-551/
-#wallet      = bitcoin-prune-551/wallets/wallet-main/
+#wallet      = /home/ku/bitcoin-prune-551/wallets/wallet-main/
 addresstype = p2sh-segwit
 chain       = main
 rpcuser     = user
@@ -91,7 +91,9 @@ rpcbind     = 127.0.0.1:8332
 # важен абсолютный путь до DataDir #
 ####################################
 
+#test
 bitcoind -daemon -chain=test -prune=551 -datadir=/home/ku/bitcoin-prune-551
+#main
 bitcoind -daemon -chain=main -prune=551 -datadir=/home/ku/bitcoin-prune-551
 
 
@@ -114,8 +116,12 @@ bitcoin-cli -rpcuser=user -rpcpassword=password stop
 # создание файла кошелька #
 ###########################
 
+#test
 bitcoin-cli -rpcuser=user -rpcpassword=password createwallet wallet-test
+#main
 bitcoin-cli -rpcuser=user -rpcpassword=password createwallet wallet-main
+
+#после создания - раскомментировать пути в конфиге bitcoin.conf
 
 
 
