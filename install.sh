@@ -1,4 +1,4 @@
-#рут
+#вход в рута
 sudo -i
 
 #обновления
@@ -6,20 +6,23 @@ apt update
 apt upgrade
 
 #утилиты
-apt install htop curl wget jq
+apt install htop -y
+apt install curl -y
+apt install wget -y
+apt install jq -y
 
 #веб
-apt install nginx
+apt install nginx -y
 
 #пхп
-apt install php-fpm
-apt install php7.4-mbstring
-apt install php7.4-pgsql
-apt install php7.4-gd
+apt install php-fpm -y
+apt install php7.4-mbstring -y
+apt install php7.4-pgsql -y
+apt install php7.4-gd -y
 
 #база
-apt install postgresql
-apt install pgbouncer
+apt install postgresql -y
+apt install pgbouncer -y
 
 #почта
 #маил-утил и опен-дким и ещё что-то?
@@ -32,3 +35,6 @@ apt install pgbouncer
 
 #чистка
 apt clean
+
+#выход из рута
+exit
