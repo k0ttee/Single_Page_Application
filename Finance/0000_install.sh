@@ -58,6 +58,7 @@ nano ~/bitcoin-prune-551/bitcoin.conf
 par         = 1
 prune       = 551
 datadir     = /home/ku/bitcoin-prune-551/
+wallet      = /home/ku/bitcoin-prune-551/testnet3/wallets/wallet-test/
 addresstype = p2sh-segwit
 chain       = test
 rpcuser     = user
@@ -71,6 +72,7 @@ rpcbind     = 127.0.0.1:8332
 par         = 1
 prune       = 551
 datadir     = /home/ku/bitcoin-prune-551/
+#wallet      = bitcoin-prune-551/wallets/wallet-main/
 addresstype = p2sh-segwit
 chain       = main
 rpcuser     = user
