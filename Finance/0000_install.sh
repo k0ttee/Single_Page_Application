@@ -11,8 +11,15 @@
 #                                        #
 ##########################################
 
+
+
+
+
+
 #утилита подсветит JSON в терминале
 sudo apt install jq
+
+
 
 
 
@@ -32,6 +39,8 @@ sudo mv bitcoind /usr/local/bin/bitcoind
 sudo mv bitcoin-cli /usr/local/bin/bitcoin-cli
 cd ~/
 rm -rf bitcoin
+
+
 
 
 
@@ -70,6 +79,11 @@ rpcport     = 8332
 rpcallowip  = 127.0.0.1
 rpcbind     = 127.0.0.1:8332
 
+
+
+
+
+
 ####################################
 # старт демона                     #
 # важен абсолютный путь до DataDir #
@@ -78,8 +92,27 @@ rpcbind     = 127.0.0.1:8332
 bitcoind -daemon -chain=test -prune=551 -datadir=/home/ku/bitcoin-prune-551
 bitcoind -daemon -chain=main -prune=551 -datadir=/home/ku/bitcoin-prune-551
 
+
+
+
+
+
 ###############
 # стоп демона #
 ###############
 
 bitcoin-cli -rpcuser=user -rpcpassword=password stop
+
+
+
+
+
+
+###########################
+# создание файла кошелька #
+###########################
+
+bitcoin-cli -rpcuser=user -rpcpassword=password createwallet wallet-test
+bitcoin-cli -rpcuser=user -rpcpassword=password createwallet wallet-main
+
+bitcoin-cli -rpcuser=user -rpcpassword=password getnewaddress "MyLabel" "p2sh-segwit"
