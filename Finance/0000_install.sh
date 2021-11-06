@@ -92,6 +92,8 @@ rpcbind     = 127.0.0.1:8332
 bitcoind -daemon -chain=test -prune=551 -datadir=/home/ku/bitcoin-prune-551
 bitcoind -daemon -chain=main -prune=551 -datadir=/home/ku/bitcoin-prune-551
 
+bitcoin-cli -rpcuser=user -rpcpassword=password -getinfo | jq
+
 
 
 
