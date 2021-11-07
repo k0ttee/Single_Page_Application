@@ -33,8 +33,17 @@ apt install wget curl htop jq
 
 
 
-#php
-#
+#язык
+apt install fpm-and-cli
+apt install postgres
+
+
+
+
+
+
+#база
+apt install 
 
 
 
@@ -43,7 +52,6 @@ apt install wget curl htop jq
 
 ##########################
 # установка Bitcoin Core #
-# важна версия в ссылке  #
 ##########################
 
 wget https://bitcoincore.org/bin/bitcoin-core-22.0/bitcoin-22.0-x86_64-linux-gnu.tar.gz -O ~/bitcoin.tar.gz
