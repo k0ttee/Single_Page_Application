@@ -25,34 +25,32 @@ systemctl reboot
 
 
 
-#утилиты
+###########
+# утилиты #
+###########
+
 apt install wget curl htop jq -y
 
 
 
 
 
+########################################
+# веб сервер, база данных, свои демоны #
+########################################
 
-#язык
-apt install fpm-and-cli
-apt install postgres
-
-
-
-
-
-
-#база
-apt install 
+apt install nginx -y
+apt install php-fpm php-mbstring php-pgsql -y
+apt install postgresql pgbouncer -y
 
 
 
 
 
 
-##########################
-# установка Bitcoin Core #
-##########################
+################
+# Bitcoin Core #
+################
 
 wget https://bitcoincore.org/bin/bitcoin-core-22.0/bitcoin-22.0-x86_64-linux-gnu.tar.gz -O ~/bitcoin.tar.gz
 cd ~/
@@ -60,8 +58,8 @@ mkdir bitcoin
 tar -C ~/bitcoin -xvf bitcoin.tar.gz --strip-components 1
 rm bitcoin.tar.gz
 cd ~/bitcoin/bin/
-sudo mv bitcoind /usr/local/bin/bitcoind
-sudo mv bitcoin-cli /usr/local/bin/bitcoin-cli
+mv bitcoind /usr/local/bin/bitcoind
+mv bitcoin-cli /usr/local/bin/bitcoin-cli
 cd ~/
 rm -rf bitcoin
 
@@ -81,11 +79,11 @@ nano ~/bitcoin-prune-551/bitcoin.conf
 [test]
 
 par         = 1
-prune       = 551
-datadir     = /home/ku/bitcoin-prune-551/
-#wallet      = /home/ku/bitcoin-prune-551/testnet3/wallets/wallet-test/
+prune       = 600
+datadir     = /root/bitcoin-prune-600/
+#wallet      = /root/bitcoin-prune-600/testnet3/wallets/wallet-test/
 addresstype = p2sh-segwit
-rpcthreads  = 2
+rpcthreads  = 1
 chain       = test
 rpcuser     = user
 rpcpassword = password
@@ -96,11 +94,11 @@ rpcbind     = 127.0.0.1:8332
 [main]
 
 par         = 1
-prune       = 551
-datadir     = /home/ku/bitcoin-prune-551/
-#wallet      = /home/ku/bitcoin-prune-551/wallet-main/
+prune       = 600
+datadir     = /root/bitcoin-prune-600/
+#wallet      = /root/bitcoin-prune-600/wallet-main/
 addresstype = p2sh-segwit
-rpcthreads  = 2
+rpcthreads  = 1
 chain       = main
 rpcuser     = user
 rpcpassword = password
@@ -119,9 +117,9 @@ rpcbind     = 127.0.0.1:8332
 ####################################
 
 #test
-bitcoind -daemon -chain=test -prune=551 -datadir=/home/ku/bitcoin-prune-551/
+bitcoind -daemon -chain=test -prune=551 -datadir=/root/bitcoin-prune-600/
 #main
-bitcoind -daemon -chain=main -prune=551 -datadir=/home/ku/bitcoin-prune-551/
+bitcoind -daemon -chain=main -prune=551 -datadir=/root/bitcoin-prune-600/
 
 
 
