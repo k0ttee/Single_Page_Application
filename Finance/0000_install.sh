@@ -24,6 +24,7 @@ systemctl reboot
 
 
 
+
 #утилиты
 apt install wget curl htop jq
 
