@@ -69,19 +69,19 @@ mkdir ~/bitcoin-prune-600/
 
 
 # конфиг демона (test & main)
+mkdir /root/.bitcoin/
 nano /root/.bitcoin/bitcoin.conf
 
 par         = 1
 prune       = 600
 addresstype = p2sh-segwit
-rpcthreads  = 3
 rpcuser     = user
 rpcpassword = password
-rpcport     = 8332
 rpcallowip  = 127.0.0.1
-rpcbind     = 127.0.0.1:8332
 [test]
 wallet      = /root/.bitcoin/testnet3/wallets/wallet-test
+rpcport     = 8332
+rpcbind     = 127.0.0.1:8332
 [main]
 wallet      = /root/.bitcoin/wallet-main
 
@@ -94,7 +94,7 @@ wallet      = /root/.bitcoin/wallet-main
 # старт демона, создание кошелька (test), стоп демона #
 #######################################################
 
-bitcoind -daemon -chain=test -prune=600 -datadir=/root/bitcoin-prune-600/
+bitcoind -daemon -chain=test
 bitcoin-cli -rpcuser=user -rpcpassword=password createwallet wallet-test
 bitcoin-cli -rpcuser=user -rpcpassword=password stop
 
@@ -107,9 +107,8 @@ bitcoin-cli -rpcuser=user -rpcpassword=password stop
 # старт демона, создание кошелька (main), стоп демона #
 #######################################################
 
-bitcoind -daemon -chain=main -prune=600 -datadir=/root/bitcoin-prune-600/
-mkdir /root/bitcoin-prune-600/wallets/
-bitcoin-cli -rpcuser=user -rpcpassword=password createwallet /wallets/wallet-main
+bitcoind -daemon -chain=main
+bitcoin-cli -rpcuser=user -rpcpassword=password createwallet wallet-main
 bitcoin-cli -rpcuser=user -rpcpassword=password stop
 
 
