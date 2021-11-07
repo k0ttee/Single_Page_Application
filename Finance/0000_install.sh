@@ -62,21 +62,21 @@ mv bitcoind /usr/local/bin/bitcoind
 mv bitcoin-cli /usr/local/bin/bitcoin-cli
 cd ~/
 rm -rf bitcoin
-
+mkdir ~/bitcoin-prune-600/
 
 
 
 
 
 # конфиг демона (test & main)
-nano ~/bitcoin-prune-551/bitcoin.conf
+nano ~/bitcoin-prune-600/bitcoin.conf
 
 [test]
 
 par         = 1
 prune       = 600
 datadir     = /root/bitcoin-prune-600/
-#wallet      = /root/bitcoin-prune-600/testnet3/wallets/wallet-test/
+wallet      = /root/bitcoin-prune-600/testnet3/wallets/wallet-test/
 addresstype = p2sh-segwit
 rpcthreads  = 1
 chain       = test
@@ -91,7 +91,7 @@ rpcbind     = 127.0.0.1:8332
 par         = 1
 prune       = 600
 datadir     = /root/bitcoin-prune-600/
-#wallet      = /root/bitcoin-prune-600/wallet-main/
+wallet      = /root/bitcoin-prune-600/wallet-main/
 addresstype = p2sh-segwit
 rpcthreads  = 1
 chain       = main
@@ -106,25 +106,12 @@ rpcbind     = 127.0.0.1:8332
 
 
 
-####################################
-# старт демона                     #
-# важен абсолютный путь до DataDir #
-####################################
+#######################################################
+# старт демона, создание кошелька (test), стоп демона #
+#######################################################
 
-#test
-bitcoind -daemon -chain=test -prune=551 -datadir=/root/bitcoin-prune-600/
-#main
-bitcoind -daemon -chain=main -prune=551 -datadir=/root/bitcoin-prune-600/
-
-
-
-
-
-
-###############
-# стоп демона #
-###############
-
+bitcoind -daemon -chain=test -prune=600 -datadir=/root/bitcoin-prune-600/
+bitcoin-cli -rpcuser=user -rpcpassword=password createwallet wallet-test
 bitcoin-cli -rpcuser=user -rpcpassword=password stop
 
 
@@ -132,16 +119,13 @@ bitcoin-cli -rpcuser=user -rpcpassword=password stop
 
 
 
-###########################
-# создание файла кошелька #
-###########################
+#######################################################
+# старт демона, создание кошелька (main), стоп демона #
+#######################################################
 
-#test
-bitcoin-cli -rpcuser=user -rpcpassword=password createwallet wallet-test
-#main
+bitcoind -daemon -chain=main -prune=600 -datadir=/root/bitcoin-prune-600/
 bitcoin-cli -rpcuser=user -rpcpassword=password createwallet wallet-main
-
-#после создания - раскомментировать пути в конфиге bitcoin.conf
+bitcoin-cli -rpcuser=user -rpcpassword=password stop
 
 
 
@@ -155,3 +139,5 @@ bitcoin-cli -rpcuser=user -rpcpassword=password createwallet wallet-main
 bitcoin-cli -rpcuser=user -rpcpassword=password -getinfo | jq
 
 bitcoin-cli -rpcuser=user -rpcpassword=password getnewaddress "MyLabel" "p2sh-segwit"
+
+bitcoin-cli -rpcuser=user -rpcpassword=password stop
