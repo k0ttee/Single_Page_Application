@@ -69,37 +69,21 @@ mkdir ~/bitcoin-prune-600/
 
 
 # конфиг демона (test & main)
-nano ~/bitcoin-prune-600/bitcoin.conf
+nano /root/.bitcoin/bitcoin.conf
 
+par         = 1
+prune       = 600
+addresstype = p2sh-segwit
+rpcthreads  = 3
+rpcuser     = user
+rpcpassword = password
+rpcport     = 8332
+rpcallowip  = 127.0.0.1
+rpcbind     = 127.0.0.1:8332
 [test]
-
-par         = 1
-prune       = 600
-datadir     = /root/bitcoin-prune-600/
-wallet      = /root/bitcoin-prune-600/testnet3/wallets/wallet-test/
-addresstype = p2sh-segwit
-rpcthreads  = 3
-chain       = test
-rpcuser     = user
-rpcpassword = password
-rpcport     = 8332
-rpcallowip  = 127.0.0.1
-rpcbind     = 127.0.0.1:8332
-
+wallet      = /root/.bitcoin/testnet3/wallets/wallet-test
 [main]
-
-par         = 1
-prune       = 600
-datadir     = /root/bitcoin-prune-600/
-wallet      = /root/bitcoin-prune-600/wallets/wallet-main/
-addresstype = p2sh-segwit
-rpcthreads  = 3
-chain       = main
-rpcuser     = user
-rpcpassword = password
-rpcport     = 8332
-rpcallowip  = 127.0.0.1
-rpcbind     = 127.0.0.1:8332
+wallet      = /root/.bitcoin/wallet-main
 
 
 
