@@ -78,7 +78,7 @@ prune       = 600
 datadir     = /root/bitcoin-prune-600/
 wallet      = /root/bitcoin-prune-600/testnet3/wallets/wallet-test/
 addresstype = p2sh-segwit
-rpcthreads  = 1
+rpcthreads  = 3
 chain       = test
 rpcuser     = user
 rpcpassword = password
@@ -93,7 +93,7 @@ prune       = 600
 datadir     = /root/bitcoin-prune-600/
 wallet      = /root/bitcoin-prune-600/wallets/wallet-main/
 addresstype = p2sh-segwit
-rpcthreads  = 1
+rpcthreads  = 3
 chain       = main
 rpcuser     = user
 rpcpassword = password
@@ -124,7 +124,8 @@ bitcoin-cli -rpcuser=user -rpcpassword=password stop
 #######################################################
 
 bitcoind -daemon -chain=main -prune=600 -datadir=/root/bitcoin-prune-600/
-bitcoin-cli -rpcuser=user -rpcpassword=password createwallet wallet-main
+mkdir /root/bitcoin-prune-600/wallets/
+bitcoin-cli -rpcuser=user -rpcpassword=password createwallet /wallets/wallet-main
 bitcoin-cli -rpcuser=user -rpcpassword=password stop
 
 
