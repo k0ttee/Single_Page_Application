@@ -16,8 +16,24 @@
 
 
 
-#утилита подсветит JSON в терминале
-sudo apt install jq
+#игнорировать закрытие крышки ноутбука
+echo 'HandleLidSwitch=ignore' >> /etc/systemd/logind.conf
+
+
+
+
+
+
+#утилиты
+apt install wget curl htop jq
+
+
+
+
+
+
+#php
+#
 
 
 
