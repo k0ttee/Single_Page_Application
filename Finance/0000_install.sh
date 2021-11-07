@@ -143,12 +143,14 @@ apt clean
 
 
 
-########################
-# управление кошельком #
-########################
+########################################
+#                                      #
+#    ИТОГО                             #
+#                                      #
+#    запускать демона в нужной сети    #
+#                                      #
+########################################
 
 bitcoin-cli -rpcuser=user -rpcpassword=password -getinfo | jq
-
 bitcoin-cli -rpcuser=user -rpcpassword=password getnewaddress "MyLabel" "p2sh-segwit"
-
 bitcoin-cli -rpcuser=user -rpcpassword=password stop
