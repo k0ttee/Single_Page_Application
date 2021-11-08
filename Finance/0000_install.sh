@@ -25,6 +25,28 @@ systemctl reboot
 
 
 
+############
+# удобства #
+############
+
+#изменить конфиг баш
+nano /root/.bashrc
+
+PS1="${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+alias grep="grep --color=auto"
+alias ls="ls -Fa --color"
+alias ll="ls -l --color"
+alias disk="df -H / && echo && df -i /"
+alias purge="sync & echo 3 > /proc/sys/vm/drop_caches"
+
+#подхватить конфиг баш
+source /root/.bashrc
+
+
+
+
+
+
 ###########
 # утилиты #
 ###########
