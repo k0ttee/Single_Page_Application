@@ -57,13 +57,41 @@ apt install wget curl htop jq -y
 
 
 
-########################################
-# веб сервер, база данных, свои демоны #
-########################################
+#######################################
+# веб-морда, база данных, свои демоны #
+#######################################
 
 apt install nginx -y
 apt install php-fpm php-mbstring php-pgsql -y
 apt install postgresql pgbouncer -y
+
+
+
+
+
+
+#веб-морда
+nano /etc/nginx/sites-enabled/192.168.1.56
+
+#веб-морда биткоин-узла
+server {
+        server_name 192.168.1.56;
+        root /var/www;
+
+        listen 80;
+
+        index index.php;
+
+        location / {
+                expires 0;
+                etag off;
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+        }
+}
+
+#применить изменения
+systemctl restart nginx
 
 
 
