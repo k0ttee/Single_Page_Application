@@ -37,7 +37,6 @@ alias grep="grep --color=auto"
 alias ls="ls -Fa --color"
 alias ll="ls -l --color"
 alias disk="df -H / && echo && df -i /"
-alias purge="sync & echo 3 > /proc/sys/vm/drop_caches"
 
 #подхватить конфиг баш
 source /root/.bashrc
@@ -166,26 +165,30 @@ bitcoin-cli -rpcuser=user -rpcpassword=password stop
 
 
 
-##########
-# чистка #
-##########
-
-apt clean
 ########################
 # файл подкачки (8 gb) #
 ########################
 
 fallocate -l 8192M /swapfile
 chmod 600 /swapfile
-mkswap /swapfile
-swapon /swapfile
+/sbin/mkswap /swapfile
+/sbin/swapon /swapfile
 echo '/swapfile none swap sw 0 0' >> /etc/fstab
-echo 'vm.swappiness=10' >> /etc/sysctl.conf
-echo 1000 > /proc/sys/vm/vfs_cache_pressure
 
 #применение
-sysctl -p
+/sbin/sysctl -p
 systemctl daemon-reload
+
+
+
+
+
+
+##########
+# чистка #
+##########
+
+apt clean
 
 
 
