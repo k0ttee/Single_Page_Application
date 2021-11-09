@@ -184,6 +184,24 @@ systemctl daemon-reload
 
 
 
+########
+# крон #
+########
+
+crontab -e
+
+#заменить test@test.test своей почтой
+
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+HOME=/
+MAILTO=test@test.test
+
+
+
+
+
+
 ##########
 # чистка #
 ##########
