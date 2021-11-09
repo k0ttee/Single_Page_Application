@@ -171,6 +171,21 @@ bitcoin-cli -rpcuser=user -rpcpassword=password stop
 ##########
 
 apt clean
+########################
+# файл подкачки (8 gb) #
+########################
+
+fallocate -l 8192M /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+echo '/swapfile none swap sw 0 0' >> /etc/fstab
+echo 'vm.swappiness=10' >> /etc/sysctl.conf
+echo 1000 > /proc/sys/vm/vfs_cache_pressure
+
+#применение
+sysctl -p
+systemctl daemon-reload
 
 
 
