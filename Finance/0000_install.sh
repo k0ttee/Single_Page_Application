@@ -33,6 +33,9 @@ systemctl reboot
 hostnamectl set-hostname bitcoin-node
 hostnamectl
 
+#добавить имя в хосты
+echo '127.0.0.1 bitcoin-node' >> /etc/hosts
+
 #изменить конфиг баш
 nano /root/.bashrc
 
