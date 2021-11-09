@@ -29,6 +29,10 @@ systemctl reboot
 # удобства #
 ############
 
+#переименовать сервер (заменить bitcoin-node своим названием)
+hostnamectl set-hostname bitcoin-node
+hostnamectl
+
 #изменить конфиг баш
 nano /root/.bashrc
 
@@ -206,7 +210,12 @@ MAILTO=test@test.test
 # чистка #
 ##########
 
+#кэш установщика приложений
 apt clean
+
+#мануалы
+apt purge man
+rm -rf /usr/share/doc/
 
 
 
