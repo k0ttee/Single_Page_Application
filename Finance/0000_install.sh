@@ -75,11 +75,14 @@ apt install postgresql pgbouncer -y
 
 
 
+#############
+# веб-морда #
+#############
 
-#веб-морда
+#домен
 nano /etc/nginx/sites-enabled/192.168.1.56
 
-#веб-морда биткоин-узла
+#домен биткоин-узла
 server {
         server_name 192.168.1.56;
         root /var/www;
@@ -87,6 +90,21 @@ server {
         listen 80;
 
         index index.php;
+
+        location ~* \.(html|css|js|svg|json|ttf|ico|jpg|jpeg)$ {
+                add_header 'Access-Control-Allow-Origin' 'https://hikcoin.site';
+                expires 24h;
+                etag on;
+                try_files $uri =404;
+        }
+
+        location /api.php {
+                add_header 'Access-Control-Allow-Origin' 'https://hikcoin.site';
+                expires 0;
+                etag off;
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+        }
 
         location / {
                 expires 0;
@@ -98,6 +116,9 @@ server {
 
 #применить изменения
 systemctl restart nginx
+
+#узнать установленные модули
+/usr/sbin/nginx -V 2>&1|xargs -n1|grep module
 
 
 
