@@ -92,14 +92,14 @@ server {
         index index.php;
 
         location ~* \.(html|css|js|svg|json|ttf|ico|jpg|jpeg)$ {
-                add_header 'Access-Control-Allow-Origin' 'https://hikcoin.site';
+                add_header 'Access-Control-Allow-Origin' 'https://main.site';
                 expires 24h;
                 etag on;
                 try_files $uri =404;
         }
 
         location /api.php {
-                add_header 'Access-Control-Allow-Origin' 'https://hikcoin.site';
+                add_header 'Access-Control-Allow-Origin' 'https://main.site';
                 expires 0;
                 etag off;
                 include snippets/fastcgi-php.conf;
