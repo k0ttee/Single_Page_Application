@@ -47,6 +47,9 @@ alias grep="grep --color=auto"
 alias ls="ls -Fa --color"
 alias ll="ls -l --color"
 alias disk="df -H / && echo && df -i /"
+alias start-btc-main="bitcoind -daemon -chain=main"
+alias start-btc-test="bitcoind -daemon -chain=test"
+alias stop-btc="bitcoin-cli -rpcuser=user -rpcpassword=password stop"
 
 #подхватить конфиг баш
 source /root/.bashrc
