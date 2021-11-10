@@ -20,6 +20,9 @@
 echo 'HandleLidSwitch=ignore' >> /etc/systemd/logind.conf
 systemctl reboot
 
+#питание от аккумулятора
+apt install upower
+
 
 
 
