@@ -93,7 +93,8 @@ systemctl daemon-reload
 # ежедневное резервное копирование #
 ####################################
 
-nano /root/backup.sh
+#файл скрипта
+touch /root/backup.sh; chmod 777 /root/backup.sh; nano /root/backup.sh
 
 #!/bin/bash
 #текущая дата (пример 2021-12-31)
