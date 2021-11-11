@@ -71,6 +71,25 @@ apt install wget curl htop jq -y
 
 
 
+########################
+# файл подкачки (8 gb) #
+########################
+
+fallocate -l 8192M /swapfile
+chmod 600 /swapfile
+/sbin/mkswap /swapfile
+/sbin/swapon /swapfile
+echo '/swapfile none swap sw 0 0' >> /etc/fstab
+
+#применение
+/sbin/sysctl -p
+systemctl daemon-reload
+
+
+
+
+
+
 #######################################
 # веб-морда, база данных, свои демоны #
 #######################################
@@ -195,25 +214,6 @@ bitcoin-cli -rpcuser=user -rpcpassword=password stop
 bitcoind -daemon -chain=main
 bitcoin-cli -rpcuser=user -rpcpassword=password createwallet wallet-main
 bitcoin-cli -rpcuser=user -rpcpassword=password stop
-
-
-
-
-
-
-########################
-# файл подкачки (8 gb) #
-########################
-
-fallocate -l 8192M /swapfile
-chmod 600 /swapfile
-/sbin/mkswap /swapfile
-/sbin/swapon /swapfile
-echo '/swapfile none swap sw 0 0' >> /etc/fstab
-
-#применение
-/sbin/sysctl -p
-systemctl daemon-reload
 
 
 
