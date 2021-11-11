@@ -50,6 +50,7 @@ alias disk="df -H / && echo && df -i /"
 alias btc-start-main="bitcoind -daemon -chain=main"
 alias btc-start-test="bitcoind -daemon -chain=test"
 alias btc-stop="bitcoin-cli -rpcuser=user -rpcpassword=password stop"
+alias btc-info="bitcoin-cli -rpcuser=user -rpcpassword=password -getinfo | jq"
 
 #подхватить конфиг баш
 source /root/.bashrc
