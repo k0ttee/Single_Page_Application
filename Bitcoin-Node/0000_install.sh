@@ -136,8 +136,8 @@ nano /etc/nginx/sites-enabled/192.168.1.56
 server {
         server_name 192.168.1.56;
         root /var/www;
-
         listen 80;
+        add_header Cache-Control private;
 
         index index.php;
 
@@ -148,7 +148,8 @@ server {
                 try_files $uri =404;
         }
 
-        location /api.php {
+        location /create-deposit-address.php {
+                #клиентский закрытый
                 add_header 'Access-Control-Allow-Origin' 'https://main.site';
                 expires 0;
                 etag off;
@@ -156,7 +157,35 @@ server {
                 fastcgi_pass unix:/run/php/php7.4-fpm.sock;
         }
 
-        location / {
+        location /get-deposit-address.php {
+                #клиентский закрытый
+                add_header 'Access-Control-Allow-Origin' 'https://main.site';
+                expires 8760h;
+                etag on;
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+        }
+
+        location /get-deposit-history.php {
+                #клиентский закрытый
+                add_header 'Access-Control-Allow-Origin' 'https://main.site';
+                expires 0;
+                etag off;
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+        }
+
+        location /get-withdraw-history.php {
+                #клиентский закрытый
+                add_header 'Access-Control-Allow-Origin' 'https://main.site';
+                expires 0;
+                etag off;
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+        }
+
+        location /add-withdraw-order.php {
+                #серверный закрытый
                 expires 0;
                 etag off;
                 include snippets/fastcgi-php.conf;
