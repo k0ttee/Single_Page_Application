@@ -16,7 +16,7 @@ server {
         gzip_comp_level 9;
         gzip_types *;
 
-        location ~* \.(html|css|js|svg|json|ttf|ico)$ {
+        location ~* \.(html|css|js|svg|json|ttf|ico|jpg|jpeg)$ {
                 add_header 'Access-Control-Allow-Origin' 'https://example.test';
                 expires 24h;
                 etag on;
