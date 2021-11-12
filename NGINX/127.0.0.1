@@ -11,6 +11,9 @@ server {
         listen 443 ssl http2;
         #listen [::]:443 ssl http2 ipv6only=on;
         
+        ssl_certificate     /etc/letsencrypt/live/127.0.0.1/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/127.0.0.1/privkey.pem;
+        
         add_header Cache-Control private;
 
         gzip on;
@@ -24,7 +27,4 @@ server {
                 etag on;
                 try_files $uri =404;
         }
-
-        ssl_certificate     /etc/letsencrypt/live/127.0.0.1/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/127.0.0.1/privkey.pem;
 }
