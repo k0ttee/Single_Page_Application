@@ -135,18 +135,11 @@ nano /etc/nginx/sites-enabled/192.168.1.56
 #домен биткоин-узла
 server {
         server_name 192.168.1.56;
-        root /var/www;
+        root /var/www/;
         listen 80;
         add_header Cache-Control private;
 
-        index index.php;
-
-        #location ~* \.(html|css|js|svg|json|ttf|ico|jpg|jpeg)$ {
-        #        add_header 'Access-Control-Allow-Origin' 'https://main.site';
-        #        expires 24h;
-        #        etag on;
-        #        try_files $uri =404;
-        #}
+        #index index.php;
 
         location /create-deposit-address.php {
                 #клиентский закрытый
