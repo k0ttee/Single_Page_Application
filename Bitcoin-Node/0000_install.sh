@@ -141,12 +141,12 @@ server {
 
         index index.php;
 
-        location ~* \.(html|css|js|svg|json|ttf|ico|jpg|jpeg)$ {
-                add_header 'Access-Control-Allow-Origin' 'https://main.site';
-                expires 24h;
-                etag on;
-                try_files $uri =404;
-        }
+        #location ~* \.(html|css|js|svg|json|ttf|ico|jpg|jpeg)$ {
+        #        add_header 'Access-Control-Allow-Origin' 'https://main.site';
+        #        expires 24h;
+        #        etag on;
+        #        try_files $uri =404;
+        #}
 
         location /create-deposit-address.php {
                 #клиентский закрытый
