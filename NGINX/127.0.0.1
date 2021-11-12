@@ -10,6 +10,8 @@ server {
 
         listen 443 ssl http2;
         #listen [::]:443 ssl http2 ipv6only=on;
+        
+        add_header Cache-Control private;
 
         gzip on;
         gzip_proxied any;
