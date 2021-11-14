@@ -239,6 +239,59 @@ bitcoin-cli -rpcuser=user -rpcpassword=password stop
 
 
 
+################
+# создать базу #
+################
+
+su postgres
+cd ~/
+psql
+
+#какие базы есть
+\l
+
+#создать базу
+CREATE DATABASE bitcoin;
+\c bitcoin
+\d
+
+
+
+
+
+
+###################
+# создать таблицы #
+###################
+
+CREATE TABLE addresses (
+    id         bigint                   not null    UNIQUE,
+    address    character varying(64)    not null
+);
+
+CREATE TABLE deposits (
+    time       character varying(16)     not null,
+    hash       character varying(128)    not null    UNIQUE,
+    amount     bigint                    not null,
+    id         bigint                    not null,
+    counted    boolean                   not null
+);
+
+CREATE TABLE withdraws (
+    time       character varying(16)     not null,
+    hash       character varying(128)    not null    UNIQUE,
+    amount     bigint                    not null,
+    address    character varying(64)     not null,
+    key        character varying(16)     not null,
+    id         bigint                    not null,
+    counted    boolean                   not null
+);
+
+
+
+
+
+
 ########
 # крон #
 ########
