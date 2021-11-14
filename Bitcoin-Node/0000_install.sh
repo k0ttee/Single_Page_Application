@@ -134,56 +134,30 @@ nano /etc/nginx/sites-enabled/192.168.1.56
 
 #домен биткоин-узла
 server {
-        server_name 192.168.1.56;
-        root /var/www/;
-        listen 80;
-        add_header Cache-Control private;
+	server_name 192.168.1.56;
 
-        #index index.php;
+	root /var/www/web/;
+	listen 80;
 
-        location /get-deposit-address.php {
-                #клиентский закрытый
-                add_header 'Access-Control-Allow-Origin' 'https://main.site';
-                expires 8760h;
-                etag on;
-                include snippets/fastcgi-php.conf;
-                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
-        }
+	add_header Cache-Control private;
+	expires 0;
+	etag on;
 
-        location /get-deposit-history.php {
-                #клиентский закрытый
-                add_header 'Access-Control-Allow-Origin' 'https://main.site';
-                expires 0;
-                etag off;
-                include snippets/fastcgi-php.conf;
-                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
-        }
+	location ~ (/address-deposit-get.php|/address-deposit-create.php|/history-get-deposit.php|/history-get-withdraw.php) {
+		#отдаётся только в браузеры вошедших пользователей
+		add_header 'Access-Control-Allow-Origin' 'https://main.site';
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+	}
 
-        location /create-deposit-address.php {
-                #клиентский закрытый
-                add_header 'Access-Control-Allow-Origin' 'https://main.site';
-                expires 0;
-                etag off;
-                include snippets/fastcgi-php.conf;
-                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
-        }
-
-        location /get-withdraw-history.php {
-                #клиентский закрытый
-                add_header 'Access-Control-Allow-Origin' 'https://main.site';
-                expires 0;
-                etag off;
-                include snippets/fastcgi-php.conf;
-                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
-        }
-
-        location /add-withdraw-order.php {
-                #серверный закрытый
-                expires 0;
-                etag off;
-                include snippets/fastcgi-php.conf;
-                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
-        }
+	location /add-withdraw-order.php {
+		#пока отдаётся только основному серверу
+		#переделать: отдаётся только в браузеры вошедших пользователей
+		allow 94.103.81.147;
+		deny all;
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+	}
 }
 
 #применить изменения
