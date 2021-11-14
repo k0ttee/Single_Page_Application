@@ -143,14 +143,14 @@ server {
 	expires 0;
 	etag on;
 
-	location ~ (/address-deposit-get.php|/address-deposit-create.php|/history-get-deposit.php|/history-get-withdraw.php) {
+	location ~ (/deposit-address-get.php|/deposit-address-create.php|/deposit-history-get.php|/withdraw-history-get.php) {
 		#отдаётся только в браузеры вошедших пользователей
 		add_header 'Access-Control-Allow-Origin' 'https://main.site';
 		include snippets/fastcgi-php.conf;
 		fastcgi_pass unix:/run/php/php7.4-fpm.sock;
 	}
 
-	location /add-withdraw-order.php {
+	location /withdraw-order-add.php {
 		#пока отдаётся только основному серверу
 		#переделать: отдаётся только в браузеры вошедших пользователей
 		allow 94.103.81.147;
