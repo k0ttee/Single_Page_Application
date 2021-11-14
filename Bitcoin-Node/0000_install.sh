@@ -32,12 +32,12 @@ apt install upower
 # удобства #
 ############
 
-#переименовать сервер (заменить bitcoin-node своим названием)
-hostnamectl set-hostname bitcoin-node
+#переименовать сервер (заменить bitcoin своим названием)
+hostnamectl set-hostname bitcoin
 hostnamectl
 
 #добавить имя в хосты
-echo '127.0.0.1 bitcoin-node' >> /etc/hosts
+echo '127.0.0.1 bitcoin' >> /etc/hosts
 
 #изменить конфиг баш
 nano /root/.bashrc
