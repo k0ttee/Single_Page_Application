@@ -141,15 +141,6 @@ server {
 
         #index index.php;
 
-        location /create-deposit-address.php {
-                #клиентский закрытый
-                add_header 'Access-Control-Allow-Origin' 'https://main.site';
-                expires 0;
-                etag off;
-                include snippets/fastcgi-php.conf;
-                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
-        }
-
         location /get-deposit-address.php {
                 #клиентский закрытый
                 add_header 'Access-Control-Allow-Origin' 'https://main.site';
@@ -160,6 +151,15 @@ server {
         }
 
         location /get-deposit-history.php {
+                #клиентский закрытый
+                add_header 'Access-Control-Allow-Origin' 'https://main.site';
+                expires 0;
+                etag off;
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+        }
+
+        location /create-deposit-address.php {
                 #клиентский закрытый
                 add_header 'Access-Control-Allow-Origin' 'https://main.site';
                 expires 0;
