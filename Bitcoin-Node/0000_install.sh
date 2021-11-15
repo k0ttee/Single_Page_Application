@@ -139,7 +139,7 @@ server {
 	root /var/www/web/;
 	listen 80;
 
-	add_header Cache-Control private;
+	add_header 'Cache-Control' 'private';
 	expires 0;
 	etag on;
 
