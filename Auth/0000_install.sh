@@ -100,11 +100,11 @@ server {
 	add_header 'Cache-Control' 'private';
 	expires 0;
 	etag off;
-	
+
 	add_header 'Access-Control-Allow-Origin' 'https://main.site';
-        #add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
-        #add_header 'Access-Control-Allow-Headers' 'x-requested-with';
-        #add_header 'Access-Control-Allow-Credentials' 'true';
+	#add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+	#add_header 'Access-Control-Allow-Headers' 'x-requested-with';
+	#add_header 'Access-Control-Allow-Credentials' 'true';
 
 	location /sign-in.php {
                 include snippets/fastcgi-php.conf;
