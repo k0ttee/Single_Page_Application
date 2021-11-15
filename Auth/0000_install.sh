@@ -88,34 +88,30 @@ apt install postgresql pgbouncer -y
 #############
 
 #домен
-nano /etc/nginx/sites-enabled/192.168.1.56
+nano /etc/nginx/sites-enabled/192.168.1.2
 
-#домен биткоин-узла
+#домен узла аутентификации
 server {
-	server_name 192.168.1.56;
+	server_name 192.168.1.2;
 
 	root /var/www/web/;
 	listen 80;
 
 	add_header Cache-Control private;
 	expires 0;
-	etag on;
+	etag off;
 
-	location ~ (/deposit-address-get.php|/deposit-address-create.php|/deposit-history-get.php|/withdraw-history-get.php) {
-		#отдаётся только в браузеры вошедших пользователей
-		add_header 'Access-Control-Allow-Origin' 'https://main.site';
-		include snippets/fastcgi-php.conf;
-		fastcgi_pass unix:/run/php/php7.4-fpm.sock;
-	}
+	location /sign-in.php {
+                add_header 'Access-Control-Allow-Origin' 'https://main.site';
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+        }
 
-	location /withdraw-order-add.php {
-		#пока отдаётся только основному серверу
-		#переделать: отдаётся только в браузеры вошедших пользователей
-		allow 94.103.81.147;
-		deny all;
-		include snippets/fastcgi-php.conf;
-		fastcgi_pass unix:/run/php/php7.4-fpm.sock;
-	}
+        location /sign-up.php {
+                add_header 'Access-Control-Allow-Origin' 'https://main.site';
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+        }
 }
 
 #применить изменения
