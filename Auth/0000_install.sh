@@ -97,18 +97,21 @@ server {
 	root /var/www/web/;
 	listen 80;
 
-	add_header Cache-Control private;
+	add_header 'Cache-Control' 'private';
 	expires 0;
 	etag off;
+	
+	add_header 'Access-Control-Allow-Origin' 'https://main.site';
+        #add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+        #add_header 'Access-Control-Allow-Headers' 'x-requested-with';
+        #add_header 'Access-Control-Allow-Credentials' 'true';
 
 	location /sign-in.php {
-                add_header 'Access-Control-Allow-Origin' 'https://main.site';
                 include snippets/fastcgi-php.conf;
                 fastcgi_pass unix:/run/php/php7.4-fpm.sock;
         }
 
         location /sign-up.php {
-                add_header 'Access-Control-Allow-Origin' 'https://main.site';
                 include snippets/fastcgi-php.conf;
                 fastcgi_pass unix:/run/php/php7.4-fpm.sock;
         }
