@@ -160,12 +160,12 @@ CREATE TABLE passwords (
 );
 
 #ключи выплат, языки писем, отправленность ключей выплат
-CREATE TABLE keys (
-    id      BIGINT                   NOT NULL    UNIQUE,
-    key     character varying(16)    NOT NULL,
-    lang    character varying(2)     NOT NULL,
-    send    boolean                  NOT NULL
-);
+#CREATE TABLE keys (
+#    id      BIGINT                   NOT NULL    UNIQUE,
+#    key     character varying(16)    NOT NULL,
+#    lang    character varying(2)     NOT NULL,
+#    send    boolean                  NOT NULL
+#);
 
 
 
