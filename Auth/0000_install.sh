@@ -134,7 +134,7 @@ server {
                 add_header 'Access-Control-Allow-Origin' 'https://main.site';
                 include snippets/fastcgi-php.conf;
                 fastcgi_pass unix:/run/php/php7.4-fpm.sock;
-	}
+        }
 
 	location /withdraw-order-add.php {
                 #пока отдаётся только основному серверу
@@ -143,7 +143,7 @@ server {
                 #deny all;
                 include snippets/fastcgi-php.conf;
                 fastcgi_pass unix:/run/php/php7.4-fpm.sock;
-	}
+        }
 }
 
 #применить изменения
