@@ -151,9 +151,10 @@ CREATE TABLE users (
 );
 
 CREATE TABLE passwords (
-    id          BIGINT,
+    id          BIGINT                   NOT NULL    UNIQUE,
     password    character varying(16)    NOT NULL,
-    language    character varying(4)     NOT NULL
+    language    character varying(4)     NOT NULL,
+    counted     boolean                  NOT NULL
 );
 
 
