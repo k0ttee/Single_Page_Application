@@ -89,6 +89,20 @@ apt install postgresql pgbouncer -y
 
 
 
+###############
+# LetsEncrypt #
+###############
+
+apt install certbot -y
+apt install python3-certbot-nginx -y
+
+certbot certonly --nginx -m my@mail.ru -n -d 94.103.80.31
+
+
+
+
+
+
 #############
 # веб-морда #
 #############
@@ -96,7 +110,6 @@ apt install postgresql pgbouncer -y
 #домен
 nano /etc/nginx/sites-enabled/94.103.80.31
 
-#домен узла аутентификации
 server {
         server_name 94.103.80.31;
 
@@ -191,6 +204,9 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 HOME=/
 MAILTO=test@test.test
 
+#продление https сертификатов по воскресеньям в 4:30 утра
+30 4 * * 7 certbot renew --nginx --force-renewal
+
 
 
 
@@ -202,6 +218,10 @@ MAILTO=test@test.test
 
 #кэш установщика приложений
 apt clean
+
+#архивные ключи сертификатов
+rm /etc/letsencrypt/csr/*
+rm mv /etc/letsencrypt/keys/*
 
 #мануалы
 apt purge man
