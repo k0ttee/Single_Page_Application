@@ -128,9 +128,28 @@ psql
 \l
 
 #создать базу
-CREATE DATABASE users;
-\c users
+CREATE DATABASE auth;
+\c auth
+
+#какие таблицы есть
 \d
+
+
+
+
+
+
+###################
+# создать таблицы #
+###################
+
+CREATE TABLE users (
+    id           BIGSERIAL                 NOT NULL    UNIQUE,
+    email        character varying(255)    NOT NULL    UNIQUE,
+    nick_name    character varying(16)                 UNIQUE,
+    invite       bigint,
+    password     character varying(16)
+);
 
 
 
