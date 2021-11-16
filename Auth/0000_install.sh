@@ -130,19 +130,19 @@ server {
         }
 
         location ~ (/deposit-address-get.php|/deposit-address-create.php|/deposit-history-get.php|/withdraw-history-get.php) {
-		#отдаётся только в браузеры вошедших пользователей
-		add_header 'Access-Control-Allow-Origin' 'https://main.site';
-		include snippets/fastcgi-php.conf;
-		fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+                #отдаётся только в браузеры вошедших пользователей
+                add_header 'Access-Control-Allow-Origin' 'https://main.site';
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
 	}
 
 	location /withdraw-order-add.php {
-		#пока отдаётся только основному серверу
-		#переделать: отдаётся только в браузеры вошедших пользователей
-		#allow 94.103.81.147;
-		#deny all;
-		include snippets/fastcgi-php.conf;
-		fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+                #пока отдаётся только основному серверу
+                #переделать: отдаётся только в браузеры вошедших пользователей
+                #allow 94.103.81.147;
+                #deny all;
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
 	}
 }
 
