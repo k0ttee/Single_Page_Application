@@ -136,7 +136,7 @@ server {
                 fastcgi_pass unix:/run/php/php7.4-fpm.sock;
         }
 
-	location /withdraw-order-add.php {
+        location /withdraw-order-add.php {
                 #пока отдаётся только основному серверу
                 #переделать: отдаётся только в браузеры вошедших пользователей
                 #allow 94.103.81.147;
