@@ -147,12 +147,14 @@ CREATE TABLE users (
     id           BIGSERIAL                 NOT NULL    UNIQUE,
     email        character varying(255)    NOT NULL    UNIQUE,
     nick_name    character varying(16)                 UNIQUE,
-    invite       bigint,
-    password     character varying(16)
+    invite       bigint
 );
 
-
-
+CREATE TABLE passwords (
+    id          BIGINT,
+    language    character varying(4)     NOT NULL,
+    password    character varying(16)    NOT NULL
+)
 
 
 
