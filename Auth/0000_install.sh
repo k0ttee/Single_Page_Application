@@ -96,7 +96,7 @@ apt install postgresql pgbouncer -y
 apt install certbot -y
 apt install python3-certbot-nginx -y
 
-certbot certonly --nginx -m my@mail.ru -n -d 94.103.80.31
+certbot certonly --nginx --agree-tos -m k0ttee@ya.ru -n -d v859140.hosted-by-vdsina.ru
 
 
 
@@ -108,13 +108,18 @@ certbot certonly --nginx -m my@mail.ru -n -d 94.103.80.31
 #############
 
 #домен
-nano /etc/nginx/sites-enabled/94.103.80.31
+nano /etc/nginx/sites-enabled/v859140.hosted-by-vdsina.ru
 
 server {
-        server_name 94.103.80.31;
+        server_name v859140.hosted-by-vdsina.ru;
+
+        ssl_certificate     /etc/letsencrypt/live/v859140.hosted-by-vdsina.ru/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/v859140.hosted-by-vdsina.ru/privkey.pem;
+
+        listen 443 ssl http2;
+        listen [::]:443 ssl http2 ipv6only=on;
 
         root /var/www/web/;
-        listen 80;
 
         add_header 'Cache-Control' 'private';
         expires 0;
