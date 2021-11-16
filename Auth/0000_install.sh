@@ -1,6 +1,6 @@
 3.) на нём хранить истории пополнений и выплат - позволит слать ключи подтверждения выплат
-4.) пополнения добавлять по старинке - брать последнее пополнение и добавлять платежи новее него
-5.) выплаты выполнять - по одной и использовать пару чекпоинт-файлов (на bitcoin-node и auth) для этого
+4.) пополнения добавлять по старинке - по туннелю: транзакционно брать последнее пополнение и добавлять платежи новее него
+5.) выплаты выполнять - по одной и использовать пару чекпоинт-файлов (на bitcoin-node и auth) для этого, ну или по туннелю транзакционно
 
 ######################################
 #                                    #
@@ -128,6 +128,22 @@ server {
                 include snippets/fastcgi-php.conf;
                 fastcgi_pass unix:/run/php/php7.4-fpm.sock;
         }
+
+        location ~ (/deposit-address-get.php|/deposit-address-create.php|/deposit-history-get.php|/withdraw-history-get.php) {
+		#отдаётся только в браузеры вошедших пользователей
+		add_header 'Access-Control-Allow-Origin' 'https://main.site';
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+	}
+
+	location /withdraw-order-add.php {
+		#пока отдаётся только основному серверу
+		#переделать: отдаётся только в браузеры вошедших пользователей
+		#allow 94.103.81.147;
+		#deny all;
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+	}
 }
 
 #применить изменения
