@@ -154,14 +154,14 @@ CREATE TABLE passwords (
     id          BIGINT                   NOT NULL    UNIQUE,
     password    character varying(16)    NOT NULL,
     lang        character varying(2)     NOT NULL,
-    count       boolean                  NOT NULL
+    send        boolean                  NOT NULL
 );
 
 CREATE TABLE keys (
-    id       BIGINT                   NOT NULL    UNIQUE,
-    key      character varying(16)    NOT NULL,
-    lang     character varying(2)     NOT NULL,
-    count    boolean                  NOT NULL
+    id      BIGINT                   NOT NULL    UNIQUE,
+    key     character varying(16)    NOT NULL,
+    lang    character varying(2)     NOT NULL,
+    send    boolean                  NOT NULL
 );
 
 
