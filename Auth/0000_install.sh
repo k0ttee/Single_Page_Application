@@ -154,7 +154,7 @@ CREATE TABLE passwords (
     id          BIGINT,
     password    character varying(16)    NOT NULL,
     language    character varying(4)     NOT NULL
-)
+);
 
 
 
