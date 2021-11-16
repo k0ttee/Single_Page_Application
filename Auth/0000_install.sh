@@ -143,6 +143,7 @@ CREATE DATABASE auth;
 # создать таблицы #
 ###################
 
+#пользователи, почты, ники, рефоводы
 CREATE TABLE users (
     id           BIGSERIAL                 NOT NULL    UNIQUE,
     email        character varying(255)    NOT NULL    UNIQUE,
@@ -150,6 +151,7 @@ CREATE TABLE users (
     invite       bigint
 );
 
+#одноразовые пароли, языки писем, отправленность одноразовых паролей
 CREATE TABLE passwords (
     id          BIGINT                   NOT NULL    UNIQUE,
     password    character varying(16)    NOT NULL,
@@ -157,12 +159,16 @@ CREATE TABLE passwords (
     send        boolean                  NOT NULL
 );
 
+#ключи выплат, языки писем, отправленность ключей выплат
 CREATE TABLE keys (
     id      BIGINT                   NOT NULL    UNIQUE,
     key     character varying(16)    NOT NULL,
     lang    character varying(2)     NOT NULL,
     send    boolean                  NOT NULL
 );
+
+
+
 
 
 
