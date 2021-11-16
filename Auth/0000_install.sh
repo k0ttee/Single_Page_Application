@@ -88,11 +88,11 @@ apt install postgresql pgbouncer -y
 #############
 
 #домен
-nano /etc/nginx/sites-enabled/192.168.1.2
+nano /etc/nginx/sites-enabled/94.103.80.31
 
 #домен узла аутентификации
 server {
-        server_name 192.168.1.2;
+        server_name 94.103.80.31;
 
         root /var/www/web/;
         listen 80;
