@@ -282,7 +282,7 @@ CREATE TABLE withdraws (
     hash       character varying(128)    not null    UNIQUE,
     amount     bigint                    not null,
     address    character varying(64)     not null,
-    key        character varying(16)     not null,
+    #key       character varying(16)     not null,
     id         bigint                    not null,
     counted    boolean                   not null
 );
