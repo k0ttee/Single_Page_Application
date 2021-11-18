@@ -196,7 +196,7 @@ mkdir /root/.bitcoin/
 nano /root/.bitcoin/bitcoin.conf
 
 par         = 1
-prune       = 600
+prune       = 551
 addresstype = p2sh-segwit
 rpcuser     = user
 rpcpassword = password
