@@ -65,7 +65,12 @@ source /root/.bashrc
 # утилиты #
 ###########
 
-apt install wget curl htop jq -y
+apt install wget
+apt install curl
+apt install htop
+apt install jq
+apt install cgroup-tools
+
 
 
 
