@@ -49,8 +49,8 @@ alias disk="df -H / && echo && df -i /"
 
 alias power="/usr/bin/php7.4 /root/power.php;echo;"
 
-alias btc-start-main="export MALLOC_ARENA_MAX=1 bitcoind -daemon -chain=main"
-alias btc-start-test="export MALLOC_ARENA_MAX=1 bitcoind -daemon -chain=test"
+alias btc-start-main="export MALLOC_ARENA_MAX=1;bitcoind -daemon -chain=main"
+alias btc-start-test="export MALLOC_ARENA_MAX=1;bitcoind -daemon -chain=test"
 
 alias btc-stop="bitcoin-cli -rpcuser=user -rpcpassword=password stop"
 
@@ -190,7 +190,8 @@ mv bitcoind /usr/local/bin/bitcoind
 mv bitcoin-cli /usr/local/bin/bitcoin-cli
 cd ~/
 rm -rf bitcoin
-mkdir ~/bitcoin-prune-600/
+rm /root/.wget-hsts
+
 
 
 
