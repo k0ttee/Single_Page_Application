@@ -46,14 +46,10 @@ PS1="${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[0
 alias grep="grep --color=auto"
 alias ls="ls --color"
 alias disk="df -H / && echo && df -i /"
-
 alias power="/usr/bin/php7.4 /root/power.php;echo;"
-
-alias btc-start-main="export MALLOC_ARENA_MAX=1;bitcoind -daemon -chain=main"
-alias btc-start-test="export MALLOC_ARENA_MAX=1;bitcoind -daemon -chain=test"
-
+alias btc-start-main="export MALLOC_ARENA_MAX=1;bitcoind -daemon -chain=main;"
+alias btc-start-test="export MALLOC_ARENA_MAX=1;bitcoind -daemon -chain=test;"
 alias btc-stop="bitcoin-cli -rpcuser=user -rpcpassword=password stop"
-
 alias btc-info="bitcoin-cli -rpcuser=user -rpcpassword=password -getinfo | jq"
 alias btc-disk="du -sh /root/.bitcoin/ --exclude=testnet3;[ -d '/root/.bitcoin/testnet3/' ] && du -sh /root/.bitcoin/testnet3/"
 
