@@ -195,18 +195,22 @@ mkdir ~/bitcoin-prune-600/
 mkdir /root/.bitcoin/
 nano /root/.bitcoin/bitcoin.conf
 
-par         = 1
-prune       = 551
-addresstype = p2sh-segwit
-rpcuser     = user
-rpcpassword = password
-rpcallowip  = 127.0.0.1
+maxmempool     = 300
+par            = 1
+rpcthreads     = 4
+prune          = 551
+dbcache        = 4
+maxconnections = 11
+addresstype    = p2sh-segwit
+rpcuser        = user
+rpcpassword    = password
+rpcallowip     = 127.0.0.1
 [test]
-wallet      = /root/.bitcoin/testnet3/wallets/wallet-test
-rpcport     = 8332
-rpcbind     = 127.0.0.1:8332
+wallet         = /root/.bitcoin/testnet3/wallets/wallet-test
+rpcport        = 8332
+rpcbind        = 127.0.0.1:8332
 [main]
-wallet      = /root/.bitcoin/wallet-main
+wallet         = /root/.bitcoin/wallet-main
 
 
 
