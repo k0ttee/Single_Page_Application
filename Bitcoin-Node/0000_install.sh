@@ -69,7 +69,6 @@ apt install wget
 apt install curl
 apt install htop
 apt install jq
-apt install cgroup-tools
 
 
 
