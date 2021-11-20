@@ -64,7 +64,7 @@ PS1="${debian_chroot:+($debian_chroot)}\[\033[1;33;40m\]\u@\h\[\033[00m\] "
 #раскраска Psql
 nano /var/lib/postgresql/.psqlrc
 
-\set PROMPT1 '%[%033[1;33;40m%]%n@%/%R%[%033[0m%]%# '
+\set PROMPT1 '%[%033[1;33;40m%]%n@%/%R%[%033[0m%]% '
 
 
 
