@@ -56,6 +56,16 @@ alias btc-disk="du -sh /root/.bitcoin/ --exclude=testnet3;[ -d '/root/.bitcoin/t
 #подхватить конфиг баш
 source /root/.bashrc
 
+#раскраска пользователя postgres
+nano /var/lib/postgresql/.bashrc
+
+PS1="${debian_chroot:+($debian_chroot)}\[\033[1;33;40m\]\u@\h\[\033[00m\] "
+
+#раскраска Psql
+nano /var/lib/postgresql/.psqlrc
+
+\set PROMPT1 '%[%033[1;33;40m%]%n@%/%R%[%033[0m%]%# '
+
 
 
 
@@ -326,6 +336,10 @@ MAILTO=test@test.test
 
 #кэш установщика приложений
 apt clean
+
+#очистить историю команд пользователя Postgres и команд Psql
+echo '' > /var/lib/postgresql/.psql_history
+echo '' > /var/lib/postgresql/.bash_history
 
 #мануалы
 apt purge man
