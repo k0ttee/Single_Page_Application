@@ -30,14 +30,6 @@ apt install upower
 #изменить конфиг баш
 nano /root/.bashrc
 
-#красный цвет рута и жёлтый цвет машины
-PS1="${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
-#редактор по умолчанию nano
-export EDITOR='/usr/bin/nano'
-#grep подкрашивает совпадения красным
-alias grep="grep --color=auto"
-alias ls="ls --color"
-alias disk="df -H / && echo && df -i /"
 alias power="/usr/bin/php7.4 /root/power.php;echo;"
 alias btc-start-main="export MALLOC_ARENA_MAX=1;bitcoind -daemon -chain=main;"
 alias btc-start-test="export MALLOC_ARENA_MAX=1;bitcoind -daemon -chain=test;"
@@ -45,16 +37,7 @@ alias btc-stop="bitcoin-cli -rpcuser=user -rpcpassword=password stop"
 alias btc-info="bitcoin-cli -rpcuser=user -rpcpassword=password -getinfo | jq"
 alias btc-disk="du -sh /root/.bitcoin/ --exclude=testnet3;[ -d '/root/.bitcoin/testnet3/' ] && du -sh /root/.bitcoin/testnet3/"
 
-#запускать psql став пользователем postgres
-alias psql="su postgres -c psql"
 
-#подхватить конфиг баш
-source /root/.bashrc
-
-#раскраска Psql
-nano /var/lib/postgresql/.psqlrc
-
-\set PROMPT1 '%[%033[1;33;40m%]%n@%/%R%[%033[0m%]% '
 
 
 
@@ -252,6 +235,12 @@ bitcoin-cli -rpcuser=user -rpcpassword=password stop
 ################
 # создать базу #
 ################
+
+#раскраска Psql
+nano /var/lib/postgresql/.psqlrc
+
+\set PROMPT1 '%[%033[1;33;40m%]%n@%/%R%[%033[0m%]% '
+
 
 su postgres
 cd ~/
