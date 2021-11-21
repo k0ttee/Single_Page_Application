@@ -230,6 +230,10 @@ CREATE TABLE withdraws (
 #кэш установщика приложений
 apt clean
 
+#архивные ключи сертификатов
+rm /etc/letsencrypt/csr/*
+rm mv /etc/letsencrypt/keys/*
+
 #очистить историю команд пользователя Postgres и команд Psql
 echo '' > /var/lib/postgresql/.psql_history
 echo '' > /var/lib/postgresql/.bash_history
