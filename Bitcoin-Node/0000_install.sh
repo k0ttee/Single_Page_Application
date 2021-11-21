@@ -30,7 +30,11 @@ apt install upower
 #изменить конфиг баш
 nano /root/.bashrc
 
+#красный цвет рута и жёлтый цвет машины
 PS1="${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+#редактор по умолчанию nano
+export EDITOR='/usr/bin/nano'
+#grep подкрашивает совпадения красным
 alias grep="grep --color=auto"
 alias ls="ls --color"
 alias disk="df -H / && echo && df -i /"
@@ -46,11 +50,6 @@ alias psql="su postgres -c psql"
 
 #подхватить конфиг баш
 source /root/.bashrc
-
-#раскраска пользователя postgres
-nano /var/lib/postgresql/.bashrc
-
-PS1="${debian_chroot:+($debian_chroot)}\[\033[1;33;40m\]\u@\h\[\033[00m\] "
 
 #раскраска Psql
 nano /var/lib/postgresql/.psqlrc
