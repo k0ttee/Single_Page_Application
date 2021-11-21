@@ -11,11 +11,6 @@
 #                                        #
 ##########################################
 
-
-
-
-
-
 #игнорировать закрытие крышки ноутбука
 echo 'HandleLidSwitch=ignore' >> /etc/systemd/logind.conf
 systemctl reboot
