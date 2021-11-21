@@ -14,12 +14,7 @@
 #                                    #
 ######################################
 
-###############
-# LetsEncrypt #
-###############
 
-
-certbot certonly --nginx --agree-tos -m k0ttee@ya.ru -n -d v859140.hosted-by-vdsina.ru
 
 #############
 # веб-морда #
@@ -74,80 +69,6 @@ systemctl restart nginx
 
 
 
-################
-# создать базу #
-################
-
-su postgres
-cd ~/
-psql
-
-#какие базы есть
-\l
-
-#создать базу
-CREATE DATABASE auth;
-\c auth
-
-#какие таблицы есть
-\d
-
-
-
-
-
-
-###################
-# создать таблицы #
-###################
-
-#пользователи, почты, ники, рефоводы
-CREATE TABLE users (
-    id           BIGSERIAL                 NOT NULL    UNIQUE,
-    email        character varying(255)    NOT NULL    UNIQUE,
-    nick_name    character varying(16)                 UNIQUE,
-    invite       bigint
-);
-
-#одноразовые пароли, языки писем, отправленность одноразовых паролей
-CREATE TABLE passwords (
-    id          BIGINT                   NOT NULL    UNIQUE,
-    password    character varying(16)    NOT NULL,
-    lang        character varying(2)     NOT NULL,
-    send        boolean                  NOT NULL
-);
-
-#ключи выплат, языки писем, отправленность ключей выплат
-#CREATE TABLE keys (
-#    id      BIGINT                   NOT NULL    UNIQUE,
-#    key     character varying(16)    NOT NULL,
-#    lang    character varying(2)     NOT NULL,
-#    send    boolean                  NOT NULL
-#);
-
-
-
-
-
-
-########
-# крон #
-########
-
-crontab -e
-
-#заменить test@test.test своей почтой
-
-SHELL=/bin/bash
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-HOME=/
-MAILTO=test@test.test
-
-#продление https сертификатов по воскресеньям в 4:30 утра
-30 4 * * 7 certbot renew --nginx --force-renewal
-
-
-
 
 
 
@@ -165,11 +86,6 @@ rm mv /etc/letsencrypt/keys/*
 #мануалы
 apt purge man
 rm -rf /usr/share/doc/
-
-
-
-
-
 
 #########################################
 #                                       #
