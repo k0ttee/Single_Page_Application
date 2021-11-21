@@ -41,42 +41,6 @@ alias btc-disk="du -sh /root/.bitcoin/ --exclude=testnet3;[ -d '/root/.bitcoin/t
 
 
 
-
-
-
-###########
-# утилиты #
-###########
-
-apt install wget
-apt install curl
-apt install htop
-apt install jq
-
-
-
-
-
-
-########################
-# файл подкачки (8 gb) #
-########################
-
-fallocate -l 8192M /swapfile
-chmod 600 /swapfile
-/sbin/mkswap /swapfile
-/sbin/swapon /swapfile
-echo '/swapfile none swap sw 0 0' >> /etc/fstab
-
-#применение
-/sbin/sysctl -p
-systemctl daemon-reload
-
-
-
-
-
-
 ####################################
 # ежедневное резервное копирование #
 ####################################
@@ -96,18 +60,6 @@ tar cpzf $backup --exclude "${target}testnet3" $target
 #удалить бэкапы старее 10 дней
 find $backup* -mtime +10 -exec rm {} \;
 
-
-
-
-
-
-#######################################
-# веб-морда, база данных, свои демоны #
-#######################################
-
-apt install nginx -y
-apt install php-fpm php-mbstring php-pgsql -y
-apt install postgresql pgbouncer -y
 
 
 
@@ -226,33 +178,6 @@ bitcoin-cli -rpcuser=user -rpcpassword=password stop
 bitcoind -daemon -chain=main
 bitcoin-cli -rpcuser=user -rpcpassword=password createwallet wallet-main
 bitcoin-cli -rpcuser=user -rpcpassword=password stop
-
-
-
-
-
-
-################
-# создать базу #
-################
-
-#раскраска Psql
-nano /var/lib/postgresql/.psqlrc
-
-\set PROMPT1 '%[%033[1;33;40m%]%n@%/%R%[%033[0m%]% '
-
-
-su postgres
-cd ~/
-psql
-
-#какие базы есть
-\l
-
-#создать базу
-CREATE DATABASE bitcoin;
-\c bitcoin
-\d
 
 
 
