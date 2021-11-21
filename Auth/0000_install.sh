@@ -14,56 +14,12 @@
 #                                    #
 ######################################
 
-
-
-
-
-
-########################
-# файл подкачки (1 gb) #
-########################
-
-fallocate -l 1024M /swapfile
-chmod 600 /swapfile
-/sbin/mkswap /swapfile
-/sbin/swapon /swapfile
-echo '/swapfile none swap sw 0 0' >> /etc/fstab
-
-#применение
-/sbin/sysctl -p
-systemctl daemon-reload
-
-
-
-
-
-
-#######################################
-# веб-морда, база данных, свои демоны #
-#######################################
-
-apt install nginx -y
-apt install php-fpm php-mbstring php-pgsql -y
-apt install postgresql pgbouncer -y
-
-
-
-
-
-
 ###############
 # LetsEncrypt #
 ###############
 
-apt install certbot -y
-apt install python3-certbot-nginx -y
 
 certbot certonly --nginx --agree-tos -m k0ttee@ya.ru -n -d v859140.hosted-by-vdsina.ru
-
-
-
-
-
 
 #############
 # веб-морда #
