@@ -71,22 +71,6 @@ systemctl restart nginx
 
 
 
-
-##########
-# чистка #
-##########
-
-#кэш установщика приложений
-apt clean
-
-#архивные ключи сертификатов
-rm /etc/letsencrypt/csr/*
-rm mv /etc/letsencrypt/keys/*
-
-#мануалы
-apt purge man
-rm -rf /usr/share/doc/
-
 #########################################
 #                                       #
 #    ИТОГО                              #
