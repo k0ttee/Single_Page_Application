@@ -41,6 +41,9 @@ alias btc-stop="bitcoin-cli -rpcuser=user -rpcpassword=password stop"
 alias btc-info="bitcoin-cli -rpcuser=user -rpcpassword=password -getinfo | jq"
 alias btc-disk="du -sh /root/.bitcoin/ --exclude=testnet3;[ -d '/root/.bitcoin/testnet3/' ] && du -sh /root/.bitcoin/testnet3/"
 
+#запускать psql став пользователем postgres
+alias psql="su postgres -c psql"
+
 #подхватить конфиг баш
 source /root/.bashrc
 
